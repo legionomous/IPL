@@ -1,0 +1,3 @@
+matches=pd.read_csv('location.../matches.csv')
+delivery=pd.read_csv('location.../deliveries.csv')
+print ("Total number of matches played:", len(matches))
