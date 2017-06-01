@@ -1,0 +1,10 @@
+#--> Importing Libraries
+import numpy as np 
+import pandas as pd 
+import matplotlib.pyplot as mlt
+import seaborn as sns
+
+#--> read Matches file
+matches=pd.read_csv('C:/Users/vrajm/Desktop/IPL/matches.csv') 
+#--> print only the first 5 rows
+matches.head(5) 
