@@ -8,3 +8,33 @@ import seaborn as sns
 matches=pd.read_csv('C:/Users/vrajm/Desktop/IPL/matches.csv') 
 #--> print only the first 5 rows
 matches.head(5) 
+
+#--> read Delivery file
+delivery=pd.read_csv('C:/Users/vrajm/Desktop/IPL/deliveries.csv') 
+#--> print only the first 5 rows
+delivery.head(5)
+
+#--> finding the number of matches played in total
+print ("Total number of matches played:", len(matches))
+#--> Location of Matches, name of teams that played and the name of unique umpires
+print(' \n Location for all matches: \n',matches['city'].unique(), ' \n \n Teams :',matches['team1'].unique(), '\n \nTotal umpires ',matches['umpire1'].unique()) 
+
+#--> Cleaning:remove the column with no data or consists of NaN
+del matches['umpire3'] 
+
+#--> Matches file after removing umpire3 column
+matches.head(4) 
+
+a= matches['player_of_match'].value_counts()
+b= a.idxmax()
+
+print(' Who has the highest man of the match awards?\n', b)
+
+c= matches['winner'].value_counts()
+d=c.idxmax()
+print(' Which team has won the most?\n', d)
+
+x=matches.iloc[[matches['win_by_runs'].idxmax()]]
+print('It was in', x['season'].item(),',','when the biggest score difference was', x['win_by_runs'].item(), ',', 'between', x['team1'].item(), '&', x['team2'].item(),'.' , 
+      ' ','The match was won by:', x['winner'].item())
+
