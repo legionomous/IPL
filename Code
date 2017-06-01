@@ -25,6 +25,7 @@ del matches['umpire3']
 #--> Matches file after removing umpire3 column
 matches.head(4) 
 
+#--> 
 a= matches['player_of_match'].value_counts()
 b= a.idxmax()
 
@@ -34,6 +35,7 @@ c= matches['winner'].value_counts()
 d=c.idxmax()
 print(' Which team has won the most?\n', d)
 
+#--> 
 x=matches.iloc[[matches['win_by_runs'].idxmax()]]
 print('It was in', x['season'].item(),',','when the biggest score difference was', x['win_by_runs'].item(), ',', 'between', x['team1'].item(), '&', x['team2'].item(),'.' , 
       ' ','The match was won by:', x['winner'].item())
@@ -41,6 +43,22 @@ print('It was in', x['season'].item(),',','when the biggest score difference was
 #--> The graph will show the decision of fielding or batting if a team wins the toss. 
 sns.countplot(y='season',hue='toss_decision',data=matches)
 mlt.show()
+
+#--> The graph shows the team that won the most tosses
+u=matches['toss_winner'].value_counts().plot.bar()
+for l in u.patches:
+    u.annotate(format(l.get_height()), (l.get_x()+0.15, l.get_height()+1))
+mlt.show()
+
+#--> The graph shows the team that won the most number of matches
+u=pd.concat([matches['team1'],matches['team2']])
+matches_played_byteams=u.value_counts().reset_index()
+matches_played_byteams.columns=['Team','Total Matches']
+matches_played_byteams['wins']=matches['winner'].value_counts().reset_index()['winner']
+matches_played_byteams.set_index('Team',inplace=2)
+matches_played_byteams.plot.bar()
+mlt.show()
+
 
 
 
