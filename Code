@@ -67,5 +67,38 @@ mlt.pie(slices,labels=labels,autopct='%1.2f%%')
 fig = mlt.gcf()
 mlt.show()
 
+#--> Most popular grounds to play
+ls = matches['venue'].value_counts().plot.bar(width=.8)
+ls.set_xlabel('Grounds')
+ls.set_ylabel('count')
+mlt.show()
+
+#--> The Graph shows the top 5 most Man of the match winners
+pp = matches['player_of_match'].value_counts().head(5).plot.bar( color='R')  
+pp.set_xlabel('MOM') 
+pp.set_ylabel('Total')
+for p in pp.patches:
+    pp.annotate(format(p.get_height()), (p.get_x()+0.15, p.get_height()+0.25))
+mlt.show()
+
+#--> Team that won the most
+sns.countplot(x='winner', data=matches)
+mlt.xticks(rotation='vertical')
+mlt.show()
+
+#--> Highest run scoring batsman (Top 5)
+max_runs=delivery.groupby(['batsman'])['batsman_runs'].sum()
+ax=max_runs.sort_values(ascending=False)[:5].plot.bar()
+for p in ax.patches:
+    ax.annotate(format(p.get_height()), (p.get_x()+0.1, p.get_height()+1))
+mlt.show()
+
+#--> Player that has scored the most number of sixes
+ax=delivery[delivery['batsman_runs']==6].batsman.value_counts()[:10].plot.bar()
+for p in ax.patches:
+    ax.annotate(format(p.get_height()), (p.get_x(), p.get_height()+10))
+mlt.show()
+
+
 
 
