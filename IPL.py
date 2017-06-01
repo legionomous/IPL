@@ -2,7 +2,7 @@
 # coding: utf-8
 
 # In[3]:
-
+#libraries used
 import numpy as np 
 import pandas as pd 
 import matplotlib.pyplot as mlt
@@ -10,7 +10,7 @@ import seaborn as sns
 
 
 # In[60]:
-
+#reading the dataset files
 matches=pd.read_csv('C:/Users/vrajm/Desktop/IPL/matches.csv') # read Matches file
 matches.head(5) #print only the first 5 rows
 
