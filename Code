@@ -37,4 +37,10 @@ print(' Which team has won the most?\n', d)
 x=matches.iloc[[matches['win_by_runs'].idxmax()]]
 print('It was in', x['season'].item(),',','when the biggest score difference was', x['win_by_runs'].item(), ',', 'between', x['team1'].item(), '&', x['team2'].item(),'.' , 
       ' ','The match was won by:', x['winner'].item())
+      
+#--> The graph will show the decision of fielding or batting if a team wins the toss. 
+sns.countplot(y='season',hue='toss_decision',data=matches)
+mlt.show()
+
+
 
