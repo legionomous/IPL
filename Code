@@ -59,6 +59,13 @@ matches_played_byteams.set_index('Team',inplace=2)
 matches_played_byteams.plot.bar()
 mlt.show()
 
+#--> Probability that the toss winner will win the match
+z=matches[matches['toss_winner']==matches['winner']]
+slices=[len(z),(len(matches)-len(z))]
+labels=['Yes','No']
+mlt.pie(slices,labels=labels,autopct='%1.2f%%')
+fig = mlt.gcf()
+mlt.show()
 
 
 
