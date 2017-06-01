@@ -99,6 +99,23 @@ for p in ax.patches:
     ax.annotate(format(p.get_height()), (p.get_x(), p.get_height()+10))
 mlt.show()
 
+#--> Orange cap winner each year with their total runs
+orange=matches[['id','season']]
+orange=orange.merge(delivery,left_on='id',right_on='match_id',how='left')
+orange=orange.groupby(['season','batsman'])['batsman_runs'].sum().reset_index()
+orange=orange.sort_values('batsman_runs',ascending=0)
+orange=orange.drop_duplicates(subset=["season"])
+orange.sort_values(by='season')
+
+#--> Top 5 bowlers with most number of wickets
+dismissal_kinds = ["bowled", "caught", "lbw", "stumped", "caught and bowled", "hit wicket"] 
+yo=delivery[delivery["dismissal_kind"].isin(dismissal_kinds)]
+zz=yo['bowler'].value_counts()[:5].plot.bar()
+for p in zz.patches:
+    zz
+mlt.show()
+
+
 
 
 
